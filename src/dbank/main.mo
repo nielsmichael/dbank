@@ -10,8 +10,17 @@ actor DBank {
   };
 
   public func withdrawal(num: Nat) {
+    let tempVal = currentValue - num;
+    if (tempVal >= 0) {
     currentValue -= num;
     Debug.print(debug_show(currentValue));
+    } else {
+      Debug.print("Error, withdrawal amount cannot be greater than balance");
+    }
   };
+
+  public query func checkBalance(): async Nat {
+    return currentValue;
+  }
 
 }
